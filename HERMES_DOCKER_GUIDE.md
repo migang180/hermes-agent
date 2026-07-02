@@ -1,5 +1,9 @@
-# Hermes Agent 本地部署指南
+# Hermes Agent —— Docker 部署指南
 
+> ⚓ **本指南仅针对 Docker 部署方式**（容器化、与 Windows 本机隔离）。
+> 如果你想让 Hermes 直接操控本机（原生 Windows 安装），请用官方一键脚本：
+> `iex (irm https://hermes-agent.nousresearch.com/install.ps1)`，与本指南无关。
+>
 > 基于源码 `f:/hermes/`，Docker Desktop 部署，DeepSeek 作为 LLM 后端。
 
 ---

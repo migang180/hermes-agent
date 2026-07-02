@@ -33,6 +33,13 @@ services:
     environment:
       - HERMES_UID=10000
       - HERMES_GID=10000
+      # Dashboard 容器自己也要初始化 agent，需要 DeepSeek key。
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      # Dashboard 绑定 0.0.0.0 时安全闸门要求注册 auth provider；
+      # 用内置 basic auth（凭据来自 .env）。宿主机侧仍只绑 127.0.0.1。
+      - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=${HERMES_DASHBOARD_BASIC_AUTH_USERNAME}
+      - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=${HERMES_DASHBOARD_BASIC_AUTH_PASSWORD}
+      - HERMES_DASHBOARD_BASIC_AUTH_SECRET=${HERMES_DASHBOARD_BASIC_AUTH_SECRET}
     ports:
       - "127.0.0.1:9119:9119"
-    command: ["dashboard", "--host", "127.0.0.1", "--port", "9119", "--no-open"]
+    command: ["dashboard", "--host", "0.0.0.0", "--port", "9119", "--no-open"]
